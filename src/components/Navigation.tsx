@@ -1,10 +1,14 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut, User } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { Button } from './ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,11 @@ const Navigation = () => {
     setIsOpen(false);
   };
 
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+  };
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
@@ -30,13 +39,13 @@ const Navigation = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between">
-            <div 
+            <Link 
+              to="/"
               className="text-white font-display font-bold text-xl cursor-pointer"
-              onClick={() => scrollToSection('home')}
               data-cursor-hover
             >
               Portfolio
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-12">
@@ -50,6 +59,44 @@ const Navigation = () => {
                   {item}
                 </button>
               ))}
+              
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-white/80 text-sm">Hello, {user.name}</span>
+                  <Button
+                    onClick={handleLogout}
+                    variant="outline"
+                    size="sm"
+                    className="border-white/20 text-white hover:bg-white hover:text-black"
+                    data-cursor-hover
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  <Link to="/login">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-white hover:bg-white/10"
+                      data-cursor-hover
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button
+                      size="sm"
+                      className="bg-white text-black hover:bg-gray-200"
+                      data-cursor-hover
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -84,6 +131,38 @@ const Navigation = () => {
                 {item}
               </button>
             ))}
+            
+            {user ? (
+              <div className="space-y-4 pt-8 border-t border-gray-700">
+                <p className="text-white/80">Hello, {user.name}</p>
+                <button
+                  onClick={handleLogout}
+                  className="text-white text-xl font-light hover:text-gray-300 transition-colors duration-300"
+                  data-cursor-hover
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4 pt-8 border-t border-gray-700">
+                <Link 
+                  to="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-white text-xl font-light hover:text-gray-300 transition-colors duration-300"
+                  data-cursor-hover
+                >
+                  Sign In
+                </Link>
+                <Link 
+                  to="/signup"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-white text-xl font-light hover:text-gray-300 transition-colors duration-300"
+                  data-cursor-hover
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
