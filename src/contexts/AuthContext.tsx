@@ -1,5 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 interface User {
   id: string;
@@ -31,52 +33,76 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored user session
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email || '',
+          name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || ''
+        });
+      }
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session?.user) {
+          setUser({
+            id: session.user.id,
+            email: session.user.email || '',
+            name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || ''
+          });
+        } else {
+          setUser(null);
+        }
+        setLoading(false);
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const login = async (email: string, password: string) => {
-    // Simulate API call - replace with actual authentication
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // For demo purposes, accept any email/password combination
-    const userData = {
-      id: '1',
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      name: email.split('@')[0]
-    };
+      password,
+    });
     
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    if (error) {
+      throw new Error(error.message);
+    }
   };
 
   const signup = async (email: string, password: string, name: string) => {
-    // Simulate API call - replace with actual registration
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const userData = {
-      id: Date.now().toString(),
+    const { error } = await supabase.auth.signUp({
       email,
-      name
-    };
+      password,
+      options: {
+        data: {
+          name: name,
+        },
+      },
+    });
     
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    if (error) {
+      throw new Error(error.message);
+    }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
+  const logout = async () => {
+    await supabase.auth.signOut();
   };
 
   const resetPassword = async (email: string) => {
-    // Simulate API call - replace with actual password reset
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Password reset email sent to:', email);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    
+    if (error) {
+      throw new Error(error.message);
+    }
   };
 
   return (
