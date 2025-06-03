@@ -33,14 +33,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('AuthProvider: Initializing auth state...');
+    
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      console.log('AuthProvider: Initial session check', { session, error });
+      
       if (session?.user) {
+        console.log('AuthProvider: User found in session', session.user);
         setUser({
           id: session.user.id,
           email: session.user.email || '',
           name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || ''
         });
+      } else {
+        console.log('AuthProvider: No user in session');
       }
       setLoading(false);
     });
@@ -48,13 +55,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('AuthProvider: Auth state changed', { event, session });
+        
         if (session?.user) {
+          console.log('AuthProvider: Setting user from auth change', session.user);
           setUser({
             id: session.user.id,
             email: session.user.email || '',
             name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || ''
           });
         } else {
+          console.log('AuthProvider: Clearing user from auth change');
           setUser(null);
         }
         setLoading(false);
@@ -65,18 +76,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    console.log('AuthProvider: Attempting login for', email);
+    
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
     
+    console.log('AuthProvider: Login response', { data, error });
+    
     if (error) {
+      console.error('AuthProvider: Login error', error);
       throw new Error(error.message);
+    }
+    
+    if (data.user) {
+      console.log('AuthProvider: Login successful', data.user);
     }
   };
 
   const signup = async (email: string, password: string, name: string) => {
-    const { error } = await supabase.auth.signUp({
+    console.log('AuthProvider: Attempting signup for', email);
+    
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -86,21 +108,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       },
     });
     
+    console.log('AuthProvider: Signup response', { data, error });
+    
     if (error) {
+      console.error('AuthProvider: Signup error', error);
       throw new Error(error.message);
+    }
+    
+    if (data.user && !data.user.email_confirmed_at) {
+      console.log('AuthProvider: Signup successful but email confirmation required');
+      throw new Error('Please check your email and click the confirmation link before logging in.');
     }
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    console.log('AuthProvider: Logging out...');
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('AuthProvider: Logout error', error);
+    }
   };
 
   const resetPassword = async (email: string) => {
+    console.log('AuthProvider: Resetting password for', email);
+    
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     
     if (error) {
+      console.error('AuthProvider: Reset password error', error);
       throw new Error(error.message);
     }
   };
