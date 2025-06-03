@@ -24,32 +24,24 @@ const WorkSection = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform built with React and Node.js featuring real-time inventory management and seamless payment integration.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
+      title: "API integrations for your usecase like a Discord bot",
+      description: "API itegrations into your custom tools like a Discord bot.",
+      tech: ["Discord.js", "Node.js", "MongoDB"],
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
       link: "#",
       github: "#"
     },
     {
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for data analysis with real-time charts and customizable widgets using D3.js and React.",
-      tech: ["React", "D3.js", "TypeScript", "Python"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      title: "AI-Powered Discord bots",
+      description: "Machine learning application for predictive analytics with interactive data exploration and automated reporting integrated into Discord bots.",
+      tech: ["Python", "TensorFlow", "React", "FastAPI"],
+      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
       link: "#",
       github: "#"
     },
-    {
-      title: "Mobile Design System",
-      description: "Comprehensive design system and component library for mobile applications with extensive documentation.",
-      tech: ["React Native", "Figma", "Storybook", "Jest"],
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
-      link: "#",
-      github: "#"
-    },
-    {
-      title: "AI-Powered Analytics",
-      description: "Machine learning application for predictive analytics with interactive data exploration and automated reporting.",
+        {
+      title: "Overall custom Discord bot development",
+      description: "Machine learning application for predictive analytics with interactive data exploration and automated reporting integrated into Discord bots.",
       tech: ["Python", "TensorFlow", "React", "FastAPI"],
       image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
       link: "#",

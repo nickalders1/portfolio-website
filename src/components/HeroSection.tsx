@@ -7,7 +7,7 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const texts = ['Creative Developer', 'UI/UX Designer', 'Problem Solver', 'Digital Artist'];
+  const texts = ['Creative Developer', 'Problem Solver', 'Discord Bot Developer'];
   
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -48,7 +48,7 @@ const HeroSection = () => {
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <div className="space-y-8">
           <h1 className="text-fluid-6xl font-display font-light text-white leading-tight animate-fade-in-up">
-            Hello, I'm <span className="font-semibold">John Doe</span>
+            Hello, I'm <span className="font-semibold">Nick Alders</span>
           </h1>
           
           <div className="h-16 flex items-center justify-center">
@@ -61,6 +61,7 @@ const HeroSection = () => {
           <p className="text-fluid-lg text-gray-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             I craft digital experiences that blend creativity with functionality. 
             Passionate about bringing ideas to life through clean code and thoughtful design.
+            Making integrations to Discord using custom build bots. 
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.9s' }}>

@@ -10,6 +10,13 @@ const ContactSection = () => {
     message: ''
   });
 
+  const socials = {
+ // Twitter: "https://twitter.com/jouwgebruikersnaam",
+ // LinkedIn: "https://www.linkedin.com/in/jouwgebruikersnaam",
+  GitHub: "https://github.com/nickalders1"
+};
+
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,19 +51,19 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      details: "hello@johndoe.com",
-      link: "mailto:hello@johndoe.com"
+      details: "nickalders63@gmail.com",
+      link: "mailto:nickalders63@gmail.com"
     },
-    {
-      icon: Phone,
-      title: "Phone",
-      details: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
-    },
+   // {
+   //   icon: Phone,
+   //   title: "Phone",
+   //   details: "--",
+   //   link: "tel:--"
+   // },
     {
       icon: MapPin,
       title: "Location",
-      details: "San Francisco, CA",
+      details: "Beverwijk, Noord-Holland",
       link: "#"
     }
   ];
@@ -97,21 +104,26 @@ const ContactSection = () => {
               ))}
             </div>
 
-            <div className="space-y-6">
-              <h3 className="text-2xl font-display font-light">Follow Me</h3>
-              <div className="flex space-x-6">
-                {['Twitter', 'LinkedIn', 'GitHub', 'Dribbble'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
-                    data-cursor-hover
-                  >
-                    {social}
-                  </a>
-                ))}
-              </div>
-            </div>
+            
+
+<div className="space-y-6">
+  <h3 className="text-2xl font-display font-light">Follow Me</h3>
+  <div className="flex space-x-6">
+    {Object.entries(socials).map(([name, url]) => (
+      <a
+        key={name}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-400 hover:text-white transition-colors duration-300"
+        data-cursor-hover
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+</div>
+
           </div>
 
           {/* Contact Form */}

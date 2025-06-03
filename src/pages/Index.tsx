@@ -1,5 +1,5 @@
 
-import CustomCursor from '../components/CustomCursor';
+// import CustomCursor from '../components/CustomCursor';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
@@ -10,7 +10,7 @@ import Footer from '../components/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen font-body overflow-x-hidden">
-      <CustomCursor />
+      
       <Navigation />
       <HeroSection />
       <AboutSection />

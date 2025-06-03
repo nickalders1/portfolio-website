@@ -21,8 +21,8 @@ const AboutSection = () => {
   }, []);
 
   const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Python',
-    'UI/UX Design', 'Figma', 'Adobe Creative Suite', 'Three.js', 'WebGL', 'GSAP'
+    'JavaScript', 'TypeScript', 'Next.js', 'Node.js', 'Python',
+    'UI/UX Design'
   ];
 
   return (
@@ -40,23 +40,17 @@ const AboutSection = () => {
             
             <div className="space-y-6 text-fluid-base text-gray-700 leading-relaxed">
               <p>
-                I'm a passionate creative developer with over 5 years of experience 
-                crafting digital experiences that seamlessly blend form and function. 
-                My journey began with a fascination for how design and technology 
-                could work together to solve real-world problems.
+                I'm a passionate creative developer with a bit of self taught knowledge.
               </p>
               
               <p>
-                I specialize in creating interactive web applications, immersive user 
-                interfaces, and digital art installations. My approach combines technical 
+                I specialize in creating interactive web applications, Dicord bots in any way shape or form. My approach combines technical 
                 expertise with creative vision to deliver solutions that not only work 
                 flawlessly but also inspire and engage users.
               </p>
               
               <p>
-                When I'm not coding, you'll find me exploring new technologies, 
-                experimenting with generative art, or hiking in the mountains 
-                seeking inspiration for my next project.
+                When I'm not coding, you'll find me working on the roofs installing solar panels for a living.
               </p>
             </div>
           </div>
@@ -67,7 +61,7 @@ const AboutSection = () => {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=face"
+                  src="https://instagram.frtm1-1.fna.fbcdn.net/v/t39.30808-6/368263023_18380741962057586_7732790649221390465_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQuaW1hZ2VfdXJsZ2VuLjEyNTl4MTU3NC5zZHIuZjMwODA4LmRlZmF1bHRfaW1hZ2UifQ&_nc_ht=instagram.frtm1-1.fna.fbcdn.net&_nc_cat=102&_nc_oc=Q6cZ2QFH2aHPeApkaX8M87UC3-AuRMaPghykIv29uAObxvnjb0mGyxl-_10HEFEabJ-f7xU&_nc_ohc=GcOm8lmGcdEQ7kNvwFRC5fm&_nc_gid=qoX4xJRIVqUhb9PkhcHiBA&edm=AP4sbd4AAAAA&ccb=7-5&ig_cache_key=MzE3MjE2NzUwOTc3NDU1MzE4Mg%3D%3D.3-ccb7-5&oh=00_AfJM92J3CGrGD1TGuHNcJcS2qgnTc_5Prp-Z7RlsDolJ3w&oe=6844FD2F&_nc_sid=7a9f4"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
