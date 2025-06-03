@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
-import CustomCursor from '../components/CustomCursor';
+// import CustomCursor from '../components/CustomCursor';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,7 +40,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-body overflow-x-hidden">
-      <CustomCursor />
       
       <div className="min-h-screen flex items-center justify-center px-6 lg:px-12">
         <div className="max-w-md w-full space-y-8">

@@ -26,24 +26,24 @@ const WorkSection = () => {
     {
       title: "API integrations for your usecase like a Discord bot",
       description: "API itegrations into your custom tools like a Discord bot.",
-      tech: ["Discord.js", "Node.js", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      tech: ["Discord.js", "Node.js", "MongoDB", "JSON"],
+      image: "https://raw.githubusercontent.com/nickalders1/web-images/refs/heads/main/api_integration.png",
       link: "#",
       github: "#"
     },
     {
       title: "AI-Powered Discord bots",
       description: "Machine learning application for predictive analytics with interactive data exploration and automated reporting integrated into Discord bots.",
-      tech: ["Python", "TensorFlow", "React", "FastAPI"],
-      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
+      tech: ["JavaScript", "Node.js", "Discord.js", "JSON"],
+      image: "https://github.com/nickalders1/web-images/blob/main/ai.png?raw=true",
       link: "#",
       github: "#"
     },
         {
       title: "Overall custom Discord bot development",
       description: "Machine learning application for predictive analytics with interactive data exploration and automated reporting integrated into Discord bots.",
-      tech: ["Python", "TensorFlow", "React", "FastAPI"],
-      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
+      tech: ["JavaScript", "Node.js", "Discord.js", "JSON"],
+      image: "https://nickalders1.github.io/web-images/custom_discord_bot.png",
       link: "#",
       github: "#"
     }
