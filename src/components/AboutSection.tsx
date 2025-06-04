@@ -21,8 +21,7 @@ const AboutSection = () => {
   }, []);
 
   const skills = [
-    'JavaScript', 'TypeScript', 'Next.js', 'Node.js', 'Python',
-    'UI/UX Design'
+    'JavaScript', 'TypeScript', 'Next.js', 'Node.js', 'Discord,js'
   ];
 
   return (
@@ -50,7 +49,7 @@ const AboutSection = () => {
               </p>
               
               <p>
-                When I'm not coding, you'll find me working on the roofs installing solar panels for a living.
+                When I'm not coding, you'll find me working on roofs installing solar panels for a living.
               </p>
             </div>
           </div>

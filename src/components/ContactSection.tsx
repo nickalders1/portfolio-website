@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,12 +34,21 @@ const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
-    setFormData({ name: '', email: '', message: '' });
-  };
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  emailjs.send('service_f4kgu6h', 'template_ik88wjv', formData, 'nV782kWWOl62zXTUU')
+    .then((result) => {
+      alert("Bericht verzonden!");
+    }, (error) => {
+      alert("Er ging iets mis.");
+    });
+
+  setFormData({ name: '', email: '', message: '' });
+};
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
